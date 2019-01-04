@@ -85,3 +85,53 @@ $ git clone https://github.com/iissnan/hexo-theme-next themes/next
 ```
 theme: next
 ```
+## hexo备份
+使用hexo＋github搭建博客，在本地可以正常编辑，但是更换电脑或者新装系统就会导致之前的源码全都丢失，无法继续维护博客，使用github的新分支备份，可以有效保护源码。
+### 备份
+1. 之前创建好的以.github.io结尾的项目中，新建一个分支如backup。
+2. 将backup设置为默认分支
+3. 将blog文件夹中的_config.yaml,themes/,source/,scaffolds/,package.json, .gitignore备份到新分支，（使用新分支上传）
+4. 删除themes/next/中的.git/，否则无法将该文件夹push到git上。
+5. 执行以下命令，提交blog网站的源文件
+```
+git add .
+git commit -m ""
+git push origin backup
+```
+6. 执行hexo d -g生成静态网页部署至github。
+### 修改
+在本地对博客进行修改后，需按如下操作
+1. 执行以下命令，提交blog网站的源文件
+```
+git add .
+git commit -m ""
+git push origin backup
+```
+2. 执行hexo d -g生成静态网页部署至github。
+### 恢复
+换电脑或者重装系统，再次修改博客操作方法
+1. 安装git、Node.js、npm
+2. 克隆
+```
+git clone git@github.com:labulakaupppppp/labulakaupppppp.github.io.git
+```
+4. 在文件夹内执行
+```
+npm install hexo-cli -g
+npm install
+npm install hexo-deployer-git
+```
+## hexo的源文件
+1. _config.yml站点的配置文件，需要拷贝；
+2. themes/主题文件夹，需要拷贝；
+3. source博客文章的.md文件，需要拷贝；
+4. scaffolds/文章的模板，需要拷贝；
+5. package.json安装包的名称，需要拷贝；
+6. .gitignore限定在push时哪些文件可以忽略，需要拷贝；
+7. .git/主题和站点都有，标志这是一个git项目，不需要拷贝；
+8. node_modules/是安装包的目录，在执行npm install的时候会重新生成，不需要拷贝；
+9. public是hexo g生成的静态网页，不需要拷贝；
+10. .deploy_git同上，hexo g也会生成，不需要拷贝；
+11. db.json文件，不需要拷贝。
+
+其实不需要拷贝的文件正是.gitignore中所忽略的。
