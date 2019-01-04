@@ -5,6 +5,7 @@ tags: IT hexo
 ---
 关于这篇博客的由来以及使用。
 搞IT的谁还没有一个博客呢，你说是么？何必那么认真！
+<!-- more-->
 ## 博客搭建
 ### Node.js
 下载[node.js](https://nodejs.org/en/download/)
