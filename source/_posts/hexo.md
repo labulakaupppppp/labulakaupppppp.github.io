@@ -51,7 +51,7 @@ deploy:
 nmp install hexo-deployer-git --save
 ```
 ## hexo的使用
-#### 写一篇新的博客
+#### 写一篇新的博客(在blog文件夹下)
 ```
 hexo new "My blog"
 ```
