@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Yumiao">
 <meta property="og:description" content="GO语言学习，从0开始！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-02T03:18:56.668Z">
+<meta property="og:updated_time" content="2019-03-03T02:17:37.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Go语言学习">
 <meta name="twitter:description" content="GO语言学习，从0开始！">
@@ -397,7 +397,25 @@
 <h2 id="GO安装"><a href="#GO安装" class="headerlink" title="GO安装"></a>GO安装</h2><h4 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h4><p><a href="https://golang.org/dl/" target="_blank" rel="noopener">GO官网</a><br>Windows/macOS/Linux三个版本按需下载。要是链接打不来，ShadowSocks了解一下。</p>
 <h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><p>先用记事本试一下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">package main</span><br><span class="line"></span><br><span class="line">import &quot;fmt&quot;</span><br><span class="line"></span><br><span class="line">func main()&#123;</span><br><span class="line">	fmt.Println(&quot;Hello world!&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在test.go所在目录下执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go run test.go</span><br></pre></td></tr></table></figure></p>
-<p>你的世界你看见！</p>
+<p>你的世界你看见！<br>在上段代码中：</p>
+<ol>
+<li>第一行先声明包信息package：每一个源文件非注释第一行都需要指明该文件属于哪个包。每一个GO程序都需要一个名为main的包。</li>
+<li>import 引入fmt包（fmt包包含了类似于print和scanf的格式化I/O）</li>
+<li>func main表示函数的开始，每个可执行函数必须含有main函数，在没有init函数的情况下，需要先执行main函数。</li>
+<li>注释跟Java一样，//单行注释；/<em>  </em>/多行注释</li>
+<li>fmt.Println可以输出引号内的内容，并在后面加一个回车。不加回车为Print。括号内可以填写变量名，以输出变量。</li>
+<li>标识符以大写字母开头可以被外部包中的代码使用被称为导出，类似于public；标识符以小写字母开头，对包外不可见，在包内可见切可用类似于protected。</li>
+</ol>
+<hr>
+<h2 id="GO-语言基础"><a href="#GO-语言基础" class="headerlink" title="GO 语言基础"></a>GO 语言基础</h2><h4 id="GO标记"><a href="#GO标记" class="headerlink" title="GO标记"></a>GO标记</h4><p>GO标记包括<strong>关键字</strong>，<strong>标识符</strong>，<strong>常量</strong>，<strong>字符串</strong>。</p>
+<h4 id="行分割符"><a href="#行分割符" class="headerlink" title="行分割符"></a>行分割符</h4><p>GO中每行代表一个语句，如需要写在一行需要在中间加一个”;”,但不建议这样做。</p>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//这是单行注释</span><br><span class="line">/* 这</span><br><span class="line">是</span><br><span class="line">多行注释</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<h4 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h4><p>标识符可以命名变量、类型等程序实体。<br>规则包括：</p>
+<ul>
+<li>由字母或数字组成a-z，A-Z，0-9</li>
+<li>可包含下划线_</li>
+<li>第一个字符不能是数字可以使字母或者下划线<br>标识符举例：ym_001；_temp;ks123;等<br>无效字符举例：1aab;for(关键字);a-c(运算符不可作为标识符)<h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4>GO中包含25个关键字<br>| break|default|func|interface|select|<br>|case|defer|go|map|struct|<br>|chan|else|goto|package|switch|<br>|const|fallthrough|if|range|type|<br>|continue|for|import|return|var|</li>
+</ul>
 
       
     </div>
@@ -577,7 +595,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GO安装"><span class="nav-number">1.</span> <span class="nav-text">GO安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载地址"><span class="nav-number">1.0.1.</span> <span class="nav-text">下载地址</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-World"><span class="nav-number">2.</span> <span class="nav-text">Hello World</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GO安装"><span class="nav-number">1.</span> <span class="nav-text">GO安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载地址"><span class="nav-number">1.0.1.</span> <span class="nav-text">下载地址</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Hello-World"><span class="nav-number">2.</span> <span class="nav-text">Hello World</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GO-语言基础"><span class="nav-number">3.</span> <span class="nav-text">GO 语言基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GO标记"><span class="nav-number">3.0.1.</span> <span class="nav-text">GO标记</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#行分割符"><span class="nav-number">3.0.2.</span> <span class="nav-text">行分割符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注释"><span class="nav-number">3.0.3.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#标识符"><span class="nav-number">3.0.4.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键字"><span class="nav-number">3.0.5.</span> <span class="nav-text">关键字</span></a></li></ol></li></div>
             
 
           </div>
