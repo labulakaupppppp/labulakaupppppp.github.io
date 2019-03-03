@@ -100,6 +100,7 @@ num = a + b;
     6. 切片类型
     7. 接口类型（interface）
     8. Map类型
+    
 #### 数字类型
 整型
 1. uint8 无符号8位整型（0-255）
@@ -110,11 +111,13 @@ num = a + b;
 6. int16 有符号 16 位整型 (-32768 到 32767)
 7. int32 有符号 32 位整型 (-2147483648 到 2147483647)
 8. int64  有符号 64 位整型 (-9223372036854775808 到 9223372036854775807)
+
 浮点型：
 1. float32  IEEE-754 32位浮点型数
 2. float64 IEEE-754 64位浮点型数
 3. complex64 32 位实数和虚数
 4. complex128 64 位实数和虚数
+
 其他数字类型：
 1. byte 类似于uint8
 2. rune 类似 int32
@@ -137,12 +140,12 @@ var indentifier type
 * 根据值制动判断变量类型
     ```
     var v_name = value
-    var b = 10
+    //var b = 10
     ```
 * 省略var ：=左侧使用未声明过的变量（这种类型只能在函数体内使用）。
     ```
     v_name ：= value
-    c := 10
+    //c := 10
     ```
     在相同的代码块中不可以多次使用:=，因为:=左侧变量字在第一次使用的时候就被初始化了。
 在一段代码块中声明了某局部变量，就需要在相同代码块中使用它，否则会出现a declared and not used的错误。
@@ -291,5 +294,149 @@ i= 1
 j= 6
 k= 12
 l= 24
-### Go语言运算符
 
+### Go语言运算符
+运算符用于在程序运行时执行数学或逻辑运算。
+
+Go 语言内置的运算符有：
+    * 算术运算符 + - * / % ++ --
+    * 关系运算符 ==  != > < <= >= 
+    * 逻辑运算符 &&(AND)  || (OR)  !(NOT)
+    * 位运算符  &  |   ^(异或：不同为1，相同为0） <<(左移 乘以2的n次方）  >>(右移 除以2的n次方）
+    * 赋值运算符 =  +=  -= *= /= %= <<= >>= &= ^= |=
+    * 其他运算符 &(取地址符） *（指针变量）
+
+指针变量 * 和地址值 & 的区别：指针变量保存的是一个地址值，会分配独立的内存来存储一个整型数字。当变量前面有 * 标识时，才等同于 & 的用法，否则会直接输出一个整型数字。
+```
+func main() {
+   var a int = 4
+   var ptr *int
+   ptr = &a
+   println("a的值为", a);    // 4
+   println("*ptr为", *ptr);  // 4
+   println("ptr为", ptr);    // 824633794744
+}
+```
+*****
+### Go语言条件语句
+* if
+* if...else
+* if嵌套语句
+* switch （case fallthrough break）
+* select:	select 语句类似于 switch 语句，但是select会随机执行一个可运行的case。如果没有case可运行，它将阻塞，直到有case可运行。
+*****
+### Go语言循环语句
+* for
+* 循环嵌套
+循环控制语句包括：break continue goto
+```
+goto label;
+..
+.
+label: statement;
+```
+*****
+### 函数
+至少有一个main函数
+#### 函数定义
+
+```
+func function_name( [parameter list] ) [return_types] {
+   函数体
+}
+```
+例如：
+```
+func max(num1, num2 int) int {
+   /* 定义局部变量 */
+   var result int
+
+   if (num1 > num2) {
+      result = num1
+   } else {
+      result = num2
+   }
+   return result 
+}
+```
+#### 函数调用
+当创建函数时，你定义了函数需要做什么，通过调用该函数来执行指定任务。
+调用函数，向函数传递参数，并返回值
+#### 函数有多个返回值
+```
+func swap(x, y string) (string, string) {
+   return y, x
+}
+```
+函数调用时，需两个变量保存函数返回值
+```
+a,b := swap("Tom","Jack")
+```
+#### 函数参数
+函数若使用参数，该变量就是函数的形参，形参就像定义在函数体内的局部变量
+调用函数，可以通过两种方式：
+* 值传递：值传递是指在调用函数时将实际参数复制一份传递到函数中，这样在函数中如果对参数进行修改，将不会影响到实际参数。
+* 引用传递 ：引用传递是指在调用函数时将实际参数的地址传递到函数中，那么在函数中对参数所进行的修改，将影响到实际参数。
+Go语言默认值传递
+#### 函数用法
+* 函数作为值：函数定义后可作为值来使用
+```
+package main
+
+import (
+   "fmt"
+   "math"
+)
+
+func main(){
+   /* 声明函数变量 */
+   getSquareRoot := func(x float64) float64 {
+      return math.Sqrt(x)
+   }
+
+   /* 使用函数 */
+   fmt.Println(getSquareRoot(9))
+
+}
+```
+* 闭包：闭包是匿名函数，可在动态编程中使用
+```
+package main
+
+import "fmt"
+
+func getSequence() func() int {
+   i:=0
+   return func() int {
+      i+=1
+     return i  
+   }
+}
+
+func main(){
+   /* nextNumber 为一个函数，函数 i 为 0 */
+   nextNumber := getSequence()  
+
+   /* 调用 nextNumber 函数，i 变量自增 1 并返回 */
+   fmt.Println(nextNumber())
+   fmt.Println(nextNumber())
+   fmt.Println(nextNumber())
+   
+   /* 创建新的函数 nextNumber1，并查看结果 */
+   nextNumber1 := getSequence()  
+   fmt.Println(nextNumber1())
+   fmt.Println(nextNumber1())
+}
+```
+以上代码执行结果为：
+```
+1
+2
+3
+1
+2
+```
+* 方法:方法就是一个包含了接受者的函数
+*****
+### Go语言变量作用域
+http://www.runoob.com/go/go-scope-rules.html
