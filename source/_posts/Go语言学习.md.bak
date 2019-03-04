@@ -439,3 +439,84 @@ func main(){
 * 方法:方法就是一个包含了接受者的函数
 *****
 ### Go语言变量作用域
+作用域表示已经声明的标识符所代表的常量、类型、变量、函数或包在源代码中的作用范围。
+Go语言中变量声明的三个位置为：
+* 函数内定义的变量为**局部变量**
+* 函数外定义的变量为**全局变量**
+* 函数定义中的变量称为**形式参数**
+#### 局部变量
+函数内声明，作用域在函数体内，参数与返回值也是局部变量。
+```
+package main
+import "fmt"
+func main(){
+//声明局部变量
+var a, b, int
+//初始化参数
+a = 10
+b = 20
+fmt.Println("a = %d, b = %d",a, b)
+}
+```
+#### 全局变量
+在函数体外声明，可以在整个包内被使用，当包被导出后也可以被外部包使用。全局变量可以被任何函数使用。
+```go
+package main
+import "fmt"
+//声明全局变量
+var g int
+func main(){
+//声明局部变量
+var a, b, int
+//初始化参数
+a = 10
+b = 20
+g = a + b
+fmt.Printf("结果： a = %d, b = %d and g = %d\n", a, b, g)
+}
+```
+全局变量可以与局部变量有相同的名称，但是局部变量会被优先考虑。
+```
+package main
+import "fmt"
+//全局变量
+var g int = 20
+func main(){
+		//局部变量
+		var g int = 10
+		fmt.Print("g = %d\n", g)
+}
+//上述代码的输出为 g = 10
+```
+#### 形式参数
+形式参数会作为函数的局部变量来使用
+```
+package main
+import "fmt"
+//全局变量
+var a int = 20
+func main() {
+   /* main 函数中声明局部变量 */
+   var a int = 10
+   var b int = 20
+   var c int = 0
+
+   fmt.Printf("main()函数中 a = %d\n",  a);
+   c = sum( a, b);
+   fmt.Printf("main()函数中 c = %d\n",  c);
+}
+
+/* 函数定义-两数相加 */
+func sum(a, b int) int {
+   fmt.Printf("sum() 函数中 a = %d\n",  a);
+   fmt.Printf("sum() 函数中 b = %d\n",  b);
+
+   return a + b;
+}
+```
+#### 初始化局部变量与全局变量
+| 数据类型 | 初始化默认值 |
+| ----- | ----- |
+| int | 0 |
+| float32 | 0 |
+| pointer | nil |
